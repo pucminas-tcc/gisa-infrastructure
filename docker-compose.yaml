@@ -2,20 +2,18 @@ version: '3.5'
 
 services:
   postgres:
-    container_name: gls_postgres
+    container_name: gisa_postgres
     image: postgres
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       PGDATA: /data/postgres
     volumes:
-       - postgres:/data/postgres
+      - postgres:/data/postgres
     ports:
       - "5432:5432"
-    networks:
-      - postgres
     restart: unless-stopped
-  
+
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -24,18 +22,76 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
     volumes:
-       - pgadmin:/var/lib/pgadmin
+      - pgadmin:/var/lib/pgadmin
 
     ports:
       - "${PGADMIN_PORT:-5051}:80"
-    networks:
+    restart: unless-stopped
+
+  gisa-identity:
+    container_name: gisa-identity
+    build:
+      context: gisa-identity/
+      dockerfile: ../gisa-identity/docker/Dockerfile
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/identity?schema=public"
+    ports:
+      - "8081:8081"
+    depends_on:
       - postgres
     restart: unless-stopped
 
-networks:
-  postgres:
-    driver: bridge
+  gisa-associate:
+    container_name: gisa-associate
+    build:
+      context: gisa-associate/
+      dockerfile: ../gisa-associate/docker/Dockerfile
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/associate?schema=public"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  gisa-partner:
+    container_name: gisa-partner
+    build:
+      context: gisa-partner/
+      dockerfile: ../gisa-partner/docker/Dockerfile
+    environment:
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/partner?schema=public"
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+  gisa-api-gateway:
+    container_name: gisa-api-gateway
+    build:
+      context: gisa-api-gateway/
+      dockerfile: ../gisa-api-gateway/docker/Dockerfile
+    environment:
+      JWT_SECRET_KEY: "pucminas-gisa-tcc"
+      JWT_EXPIRATION_TIME: "60m"
+
+      GISA_IDENTITY_SERVICE_HOST: '127.0.0.1'
+      GISA_IDENTITY_SERVICE_PORT: '8081'
+
+      GISA_ASSOCIATE_SERVICE_HOST: '127.0.0.1'
+      GISA_ASSOCIATE_SERVICE_PORT: '8082'
+
+      GISA_PARTNER_SERVICE_HOST: '127.0.0.1'
+      GISA_PARTNER_SERVICE_PORT: '8083'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - gisa-identity
+      - gisa-associate
+      - gisa-partner
+    restart: unless-stopped
 
 volumes:
-    postgres:
-    pgadmin:
+  postgres: null
+  pgadmin: null
