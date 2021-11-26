@@ -28,10 +28,9 @@ services:
       - "${PGADMIN_PORT:-5051}:80"
     restart: unless-stopped
 
-  gisa-identity:
-    container_name: gisa-identity
+  gisa_identity:
     build:
-      context: gisa-identity/
+      context: ../gisa-identity/
       dockerfile: ../gisa-identity/docker/Dockerfile
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/identity?schema=public"
@@ -41,10 +40,9 @@ services:
       - postgres
     restart: unless-stopped
 
-  gisa-associate:
-    container_name: gisa-associate
+  gisa_associate:
     build:
-      context: gisa-associate/
+      context: ../gisa-associate/
       dockerfile: ../gisa-associate/docker/Dockerfile
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/associate?schema=public"
@@ -54,10 +52,9 @@ services:
       - postgres
     restart: unless-stopped
 
-  gisa-partner:
-    container_name: gisa-partner
+  gisa_partner:
     build:
-      context: gisa-partner/
+      context: ../gisa-partner/
       dockerfile: ../gisa-partner/docker/Dockerfile
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/partner?schema=public"
@@ -67,29 +64,29 @@ services:
       - postgres
     restart: unless-stopped
 
-  gisa-api-gateway:
-    container_name: gisa-api-gateway
+  gisa_api_gateway:
+    container_name: ../gisa-api-gateway
     build:
-      context: gisa-api-gateway/
+      context: ../gisa-api-gateway/
       dockerfile: ../gisa-api-gateway/docker/Dockerfile
     environment:
       JWT_SECRET_KEY: "pucminas-gisa-tcc"
       JWT_EXPIRATION_TIME: "60m"
 
-      GISA_IDENTITY_SERVICE_HOST: '127.0.0.1'
+      GISA_IDENTITY_SERVICE_HOST: 'gisa_identity'
       GISA_IDENTITY_SERVICE_PORT: '8081'
 
-      GISA_ASSOCIATE_SERVICE_HOST: '127.0.0.1'
+      GISA_ASSOCIATE_SERVICE_HOST: 'gisa_associate'
       GISA_ASSOCIATE_SERVICE_PORT: '8082'
 
-      GISA_PARTNER_SERVICE_HOST: '127.0.0.1'
+      GISA_PARTNER_SERVICE_HOST: 'gisa_partner'
       GISA_PARTNER_SERVICE_PORT: '8083'
     ports:
       - "8080:8080"
     depends_on:
-      - gisa-identity
-      - gisa-associate
-      - gisa-partner
+      - gisa_identity
+      - gisa_associate
+      - gisa_partner
     restart: unless-stopped
 
 volumes:
