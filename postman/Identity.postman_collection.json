@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "b55e467d-af14-4d6f-9f4f-f123c47d855f",
+		"name": "Identity",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"t2@t.com\",\n    \"password\": \"1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/identity",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List all accounts",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/identity/",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List only one account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/identity/d92c74b9-9a95-4fa7-a516-a0a215508d74",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity",
+						"d92c74b9-9a95-4fa7-a516-a0a215508d74"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update account info",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"t3@t.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/identity/77771591-411f-4571-8699-f448eee374fe",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity",
+						"77771591-411f-4571-8699-f448eee374fe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete an account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/identity/77771591-411f-4571-8699-f448eee374fe",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"identity",
+						"77771591-411f-4571-8699-f448eee374fe"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

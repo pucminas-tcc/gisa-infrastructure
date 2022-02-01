@@ -1,0 +1,380 @@
+{
+	"info": {
+		"_postman_id": "6b0aed2e-89ea-4c67-b500-3bb7d00d13c0",
+		"name": "Associate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Reimbursement",
+			"item": [
+				{
+					"name": "List all reimbursements",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-reimbursement",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-reimbursement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register an reimbursement",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"planId\": \"f1b2a14e-804b-4700-b4ef-99161a3db064\",\n    \"associateId\": \"c6f4a525-0f3b-47ec-9de3-31bdfb6b8368\",\n    \"totalRequested\": 500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-reimbursement",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-reimbursement"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update an reimbursement",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"totalPaid\": 500,\n    \"isApproved\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-reimbursement/:id",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-reimbursement",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "98ff6fe3-c7f1-434c-84de-5c46bdd5b569"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Plan",
+			"item": [
+				{
+					"name": "Add new plan to associate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"planId\": \"c88b0acf-16f3-490f-aa5d-c446dedd4628\",\n    \"associateId\": \"f9135cef-fa8b-450b-9a73-aa9df696884c\",\n    \"associateTypeId\": \"47bfb925-48b5-46cc-979a-7d19abcf3e7e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-plan/register",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-plan",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List available plans",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-plan",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-plan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Types",
+			"item": [
+				{
+					"name": "List available associate types",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-type",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-type"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PlanType",
+			"item": [
+				{
+					"name": "List all associate plan types",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-plan-type",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-plan-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register a new plan type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"planId\": \"\",\n    \"associateId\": \"\",\n    \"associateTypeId\": \"\",\n    \"hasOdontologicalPlan\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-plan-type",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-plan-type"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update plan type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"planId\": \"00b9f5cd-df25-475a-b30b-3c317daffc4d\",\n    \"associateId\": \"c6f4a525-0f3b-47ec-9de3-31bdfb6b8368\",\n    \"hasOdontologicalPlan\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/associate-plan-type/96007c95-6ce0-486d-bfc1-9cd2a2118d5f",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"associate-plan-type",
+								"96007c95-6ce0-486d-bfc1-9cd2a2118d5f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "List all associates",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/associate",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"associate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

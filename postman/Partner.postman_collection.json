@@ -1,0 +1,413 @@
+{
+	"info": {
+		"_postman_id": "29b34798-93a4-4987-ab28-68cc37f2a72d",
+		"name": "Partner",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Institution",
+			"item": [
+				{
+					"name": "List all institutions",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-institution",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-institution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register institution",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Instituição teste\",\n    \"description\": \"Teste instituição\",\n    \"isActive\": true,\n    \"institutionTypeId\": \"f98e9f13-5bb1-4ba5-a196-d16c7bf8b6ff\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-institution",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-institution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all medical procedures to authorize",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-medical-procedure-authorization",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-medical-procedure-authorization"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Institution Type",
+			"item": [
+				{
+					"name": "List all institutions type",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-institution-type/",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-institution-type",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Associate Record",
+			"item": [
+				{
+					"name": "List all assocaite records",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-associate-record",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-associate-record"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new associate record",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"associateId\": \"c6f4a525-0f3b-47ec-9de3-31bdfb6b8368\",\n    \"institutionId\": \"\",\n    \"medicalProcedureId\": \"\",\n    \"colaboradorId\": \"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-associate-record",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-associate-record"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update medical procedure authorization Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isAuthorized\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-medical-procedure-authorization/:id",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-medical-procedure-authorization",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f36e892f-241f-4ffd-b03f-1b5920e67eba"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medical Procedure",
+			"item": [
+				{
+					"name": "List all medical procdures",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-medical-procedure",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-medical-procedure"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medical Procedure Authorization",
+			"item": [
+				{
+					"name": "List all medical procedures to authorize",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-medical-procedure-authorization",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-medical-procedure-authorization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new medical procedure authorization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"institutionId\": \"9f8e9201-58bf-4fde-b21f-313e0d336de5\",\n    \"associateId\": \"c6f4a525-0f3b-47ec-9de3-31bdfb6b8368\",\n    \"medicalProcedureId\": \"c307ea35-f527-42de-a034-8d332b2a9875\",\n    \"isAuthorized\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-medical-procedure-authorization",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-medical-procedure-authorization"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update medical procedure authorization",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"isAuthorized\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_gateway_host}}/api/v1/partner-medical-procedure-authorization/:id",
+							"host": [
+								"{{api_gateway_host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"partner-medical-procedure-authorization",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "f36e892f-241f-4ffd-b03f-1b5920e67eba"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "49b9ac1f-712a-400f-ac73-0e064ba804f2",
+		"name": "Legacy",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "SGPS Integration",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_gateway_host}}/api/v1/sgps",
+					"host": [
+						"{{api_gateway_host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"sgps"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
