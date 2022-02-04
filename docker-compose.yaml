@@ -47,7 +47,7 @@ services:
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/associate?schema=public"
     ports:
-      - "8081:8081"
+      - "8082:8082"
     depends_on:
       - postgres
     restart: unless-stopped
@@ -58,14 +58,13 @@ services:
       dockerfile: ../gisa-partner/docker/Dockerfile
     environment:
       DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/partner?schema=public"
-    ports:
-      - "8081:8081"
     depends_on:
       - postgres
+    ports:
+      - "8083:8083"
     restart: unless-stopped
 
   gisa_api_gateway:
-    container_name: ../gisa-api-gateway
     build:
       context: ../gisa-api-gateway/
       dockerfile: ../gisa-api-gateway/docker/Dockerfile
